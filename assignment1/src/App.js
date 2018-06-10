@@ -13,8 +13,6 @@ class App extends Component {
     };
 
     deleteTextCharacterHandler = (index) => {
-        //const currentText = this.state.text;
-        //const currentTextAfterRemoval = currentText.slice(0, index) + currentText.slice(index + 1);
         const currentText = this.state.text.split('');
         currentText.splice(index, 1);
         const currentTextAfterRemoval = currentText.join('');
