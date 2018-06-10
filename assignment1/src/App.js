@@ -30,15 +30,11 @@ class App extends Component {
         })
     };
 
-    textLengthHandler = (event) => {
+    updateTextHandler = (event) => {
         this.setState({
             text: event.target.value,
             textLength: event.target.value.length
         })
-    };
-
-    updateTextHandler = () => {
-
     };
 
     render() {
@@ -74,7 +70,7 @@ class App extends Component {
                 <UserInput changed={this.eventHandler}></UserInput>
                 <div className="assignment2_input_div">
                     <input style={this.style} className="assignment2_input" type="text"
-                           onChange={this.textLengthHandler}/>
+                           onChange={this.updateTextHandler} value={this.state.text}/>
                 </div>
                 <p>
                     The length of the entered text is: {this.state.textLength} character(s).
