@@ -9,7 +9,7 @@ const charComponent = (props) => {
         border: '1px solid black'
     };
     return (
-        <div className="charComponentOutput">
+        <div className="charComponentOutput" onClick={props.click}>
             <p style={inlineStyle}>{props.textCharacter}</p>
         </div>
     )

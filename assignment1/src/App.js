@@ -13,11 +13,14 @@ class App extends Component {
     };
 
     deleteTextCharacterHandler = (index) => {
-        const textChars = Array.from(this.state.text);
-        textChars.splice(index, 1);
+        //const currentText = this.state.text;
+        //const currentTextAfterRemoval = currentText.slice(0, index) + currentText.slice(index + 1);
+        const currentText = this.state.text.split('');
+        currentText.splice(index, 1);
+        const currentTextAfterRemoval = currentText.join('');
         this.setState({
-            text: textChars.join,
-            textLength: textChars.length
+            text: currentTextAfterRemoval,
+            textLength: currentTextAfterRemoval.length
         })
     };
 
@@ -32,6 +35,10 @@ class App extends Component {
             text: event.target.value,
             textLength: event.target.value.length
         })
+    };
+
+    updateTextHandler = () => {
+
     };
 
     render() {
