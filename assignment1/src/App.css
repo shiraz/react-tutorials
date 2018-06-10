@@ -26,3 +26,11 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.assignment2_input {
+  color: white;
+  background: darkslategrey;
+  font-size: 46px;
+  border: 8px solid yellow;
+  margin-top: 20px;
+}
