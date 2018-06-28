@@ -1,33 +1,54 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import classes from './App.css';
 import Cockpit from '../components/Cockpit/Cockpit';
-//import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
-//import Person from '../components/Persons/Person/Person';
 import Persons from '../components/Persons/Persons';
 
-//import Radium, {StyleRoot} from 'radium';
+class App extends PureComponent {
 
-class App extends Component {
+    constructor(props) {
+        super(props);
+        console.log('[App.js] Inside Constructor', props);
+        this.state = {
+            persons: [
+                {id: '34fgdgfh', name: 'Max1', age: 28},
+                {id: 'e324e32', name: 'Manu', age: 29},
+                {id: 'fdewsfr435', name: 'Stephanie', age: 26}
+            ],
+            otherState: 'some other value',
+            showPersons: false
+        };
+    }
 
-    state = {
-        persons: [
-            {id: '34fgdgfh', name: 'Max1', age: 28},
-            {id: 'e324e32', name: 'Manu', age: 29},
-            {id: 'fdewsfr435', name: 'Stephanie', age: 26}
-        ],
-        otherState: 'some other value',
-        showPersons: false
-    };
+    componentWillMount() {
+        console.log('[App.js] Inside componentWillMount');
+    }
 
-    // switchNameHandler = (newName) => {
-    //     //console.log('Was clicked');
-    //     this.setState({
-    //         persons: [
-    //             {name: newName, age: 28},
-    //             {name: 'Manu', age: 29},
-    //             {name: 'Stephanie', age: 27}
-    //         ]
-    //     })
+    componentDidMount() {
+        console.log('[App.js] Inside componentDidMount');
+    }
+
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log('[UPDATE Persons.js] Inside component shouldComponentUpdate', nextProps, nextState);
+    //     return nextState.persons !== this.state.persons ||
+    //         nextState.showPersons !== this.state.showPersons;
+    // }
+
+    componentWillUpdate(nextProps, nextState) {
+        console.log('[UPDATE App.js] Inside component componentWillUpdate', nextProps, nextState);
+    }
+
+    componentDidUpdate() {
+        console.log('[UPDATE App.js] Inside component componentDidUpdate');
+    }
+
+    // state = {
+    //     persons: [
+    //         {id: '34fgdgfh', name: 'Max1', age: 28},
+    //         {id: 'e324e32', name: 'Manu', age: 29},
+    //         {id: 'fdewsfr435', name: 'Stephanie', age: 26}
+    //     ],
+    //     otherState: 'some other value',
+    //     showPersons: false
     // };
 
     nameChangedHandler = (event, id) => {
@@ -59,19 +80,7 @@ class App extends Component {
 
     render() {
 
-        /*
-        const style = {
-            backgroundColor: 'green',
-            color: 'white',
-            font: 'inherit',
-            border: '1px solid blue',
-            padding: '8px',
-            cursor: 'pointer'
-            ':hover': {
-                backgroundColor: 'lightgreen',
-                color: 'black'
-
-        };*/
+        console.log('[App.js] Inside render');
 
         let persons = null;
 
@@ -82,25 +91,15 @@ class App extends Component {
                 clicked={this.deletePersonHandler}
                 changed={this.nameChangedHandler} />
 
-
-            /*
-            style.backgroundColor = 'red';
-            style[':hover'] = {
-                backgroundColor: 'salmon',
-                color: 'black'
-            };*/
         }
 
         return (
-            //<StyleRoot>
-            //<div className="App">
             <div className={classes.App}>
+                <button onClick={() => {this.setState({showPersons: true})}}>Show Persons</button>
                 <Cockpit showPersons={this.state.showPersons} persons={this.state.persons} clicked={this.togglePersonsHandler}/>
                 {persons}
             </div>
-            //</StyleRoot>
         );
-        //return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi, I am a React App!!!'));
     }
 }
 
