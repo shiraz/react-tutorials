@@ -1,7 +1,12 @@
 import React, {PureComponent} from 'react';
+
+import Aux from '../hoc/Aux';
 import classes from './App.css';
 import Cockpit from '../components/Cockpit/Cockpit';
 import Persons from '../components/Persons/Persons';
+import withClass from '../hoc/withClass';
+
+export const AuthContext = React.createContext(false);
 
 class App extends PureComponent {
 
@@ -15,7 +20,9 @@ class App extends PureComponent {
                 {id: 'fdewsfr435', name: 'Stephanie', age: 26}
             ],
             otherState: 'some other value',
-            showPersons: false
+            showPersons: false,
+            toggleClicked: 0,
+            authenticated: false
         };
     }
 
@@ -35,6 +42,15 @@ class App extends PureComponent {
 
     componentWillUpdate(nextProps, nextState) {
         console.log('[UPDATE App.js] Inside component componentWillUpdate', nextProps, nextState);
+    }
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        console.log('[UPDATE App.js] Inside component getDerivedStateFromProps', nextProps, prevState);
+        return prevState;
+    }
+
+    getSnapshotBeforeUpdate() {
+        console.log('[UPDATE App.js] Inside component getSnapshotBeforeUpdate');
     }
 
     componentDidUpdate() {
@@ -75,7 +91,16 @@ class App extends PureComponent {
 
     togglePersonsHandler = () => {
         const doesShow = this.state.showPersons;
-        this.setState({showPersons: !doesShow});
+        this.setState( (prevState, props) => {
+            return {
+                showPersons: !doesShow,
+                toggleClicked: prevState.toggleClicked + 1
+            }
+        });
+    };
+
+    loginHandler = () => {
+        this.setState({authenticated: true});
     };
 
     render() {
@@ -89,19 +114,28 @@ class App extends PureComponent {
             persons = <Persons
                 persons={this.state.persons}
                 clicked={this.deletePersonHandler}
-                changed={this.nameChangedHandler} />
+                changed={this.nameChangedHandler}
+                //isAuthenticated={this.state.authenticated}
+            />
 
         }
 
         return (
-            <div className={classes.App}>
+            <Aux>
                 <button onClick={() => {this.setState({showPersons: true})}}>Show Persons</button>
-                <Cockpit showPersons={this.state.showPersons} persons={this.state.persons} clicked={this.togglePersonsHandler}/>
-                {persons}
-            </div>
+                <Cockpit
+                    showPersons={this.state.showPersons}
+                    persons={this.state.persons}
+                    login={this.loginHandler}
+                    clicked={this.togglePersonsHandler}
+                />
+                <AuthContext.Provider value={this.state.authenticated}>
+                    {persons}
+                </AuthContext.Provider>
+            </Aux>
         );
     }
 }
 
 //export default Radium(App);
-export default App;
+export default withClass(App, classes.App);
