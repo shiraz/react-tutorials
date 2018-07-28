@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.mainLinks ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.mainLinks li {
+  display: inline-block;
+  margin: 20px;
+}
+
+.mainLinks a:hover,
+.mainLinks a:active,
+.mainLinks a.active {
+  color: #fa923f;
+}
