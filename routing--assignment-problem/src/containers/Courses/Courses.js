@@ -6,22 +6,14 @@ import './Courses.css';
 import Course from '../Course/Course';
 
 class Courses extends Component {
+
     state = {
         courses: [
             { id: 1, title: 'Angular - The Complete Guide' },
             { id: 2, title: 'Vue - The Complete Guide' },
             { id: 3, title: 'PWA - The Complete Guide' }
         ]
-    }
-
-    componentDidMount() {
-        this.setState(this.state.courses);
-    }
-
-    courseSelectHandler = (id) => {
-        this.props.history.push(`/courses/${id}`);
-    }
-
+    };
 
     render () {
         return (
@@ -30,8 +22,8 @@ class Courses extends Component {
                 <section className="Courses">
                     {
                         this.state.courses.map( course => {
-                            return <Link to={`/courses/${course.id}`} key={course.id}>
-                                    <article className="Course" key={course.id} title={course.title}>{course.title}</article>
+                            return <Link to={`/courses/${course.id}?title=${encodeURIComponent(course.title)}`} key={course.id}>
+                                    <article className="Course" key={course.id}>{course.title}</article>
                                 </Link>;
                         } )
                     }
