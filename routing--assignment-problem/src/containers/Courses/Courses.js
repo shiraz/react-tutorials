@@ -22,13 +22,13 @@ class Courses extends Component {
                 <section className="Courses">
                     {
                         this.state.courses.map( course => {
-                            return <Link to={`/courses/${course.id}?title=${encodeURIComponent(course.title)}`} key={course.id}>
+                            const linkTo = `/courses/${course.id}?title=${encodeURIComponent(course.title)}`;
+                            return <Link to={linkTo} key={course.id}>
                                     <article className="Course" key={course.id}>{course.title}</article>
                                 </Link>;
                         } )
                     }
                 </section>
-                {/*<Route path={this.props.match.url +  '/:id'} exact component={Course} />*/}
                 <Route exact path={this.props.match.url +  '/:id'} exact render={(props) => <Course {...props} /> } />
 
             </div>
