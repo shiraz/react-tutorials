@@ -22,15 +22,13 @@ const reducer = (state = initialState, action) => {
             console.log(newState);
             return newState;
         case actionTypes.DELETE_RESULT:
-            const updatedArr = state.results.filter((result, index) => result.id !== action.resultElementId);
+            const updatedArr = state.persons.filter(person => person.id !== action.resultPersonId);
             return {
                 ...state,
-                results: updatedArr
+                persons: updatedArr
             };
         default:
-            console.log("test");
-            console.log(state);
-            console.log(action.type);
+            console.error('Invalid action type detected.');
     }
     return state;
 };
