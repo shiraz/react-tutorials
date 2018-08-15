@@ -31,14 +31,13 @@ class Persons extends Component {
     render () {
         return (
             <div>
-                <AddPerson personAdded={() => this.props.onStoreResult(this.props.persons)} />
+                <AddPerson personAdded={() => this.props.onAddPerson(this.props.persons)} />
                 {this.props.storedResults.map(person => (
                     <Person 
                         key={person.id}
                         name={person.name} 
                         age={person.age}
-                        clicked={() => this.props.onDeleteResult(person.id)}/>
-                        // clicked={() => this.personDeletedHandler(person.id)}/>
+                        clicked={() => this.props.onDeletePerson(person.id)}/>
                 ))}
             </div>
         );
@@ -53,8 +52,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onStoreResult: () => dispatch({type: actionTypes.STORE_RESULT}),
-        onDeleteResult: (id) => dispatch({type: actionTypes.DELETE_RESULT, resultPersonId: id})
+        onAddPerson: () => dispatch({type: actionTypes.ADD_PERSON}),
+        onDeletePerson: (id) => dispatch({type: actionTypes.DELETE_PERSON, resultPersonId: id})
     };
 };
 

@@ -1,2 +1,2 @@
-export const DELETE_RESULT = 'DELETE_RESULT';
-export const STORE_RESULT = 'STORE_RESULT';
+export const DELETE_PERSON = 'DELETE_PERSON';
+export const ADD_PERSON = 'ADD_PERSON';

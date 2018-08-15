@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b7fecda-a29a-4efa-8860-5669513371d2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../redux--assignment-2-problem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../redux--assignment-2-problem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../redux--assignment-2-problem/src/store/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../redux--assignment-2-problem/src/store/reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../redux--assignment-2-problem/src/containers/Persons.js" beforeDir="false" afterPath="$PROJECT_DIR$/../redux--assignment-2-problem/src/containers/Persons.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -235,12 +234,12 @@
       <option name="presentableId" value="Default" />
       <updated>1534211330439</updated>
       <workItem from="1534211333373" duration="2930000" />
-      <workItem from="1534298641259" duration="8612000" />
+      <workItem from="1534298641259" duration="8697000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11542000" />
+    <option name="totallyTimeSpent" value="11627000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1927" y="0" width="1222" height="1194" extended-state="0" />

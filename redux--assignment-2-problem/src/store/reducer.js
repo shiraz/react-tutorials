@@ -8,7 +8,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.STORE_RESULT:
+        case actionTypes.ADD_PERSON:
             console.log('Store result action reached.');
             const newPerson = {
                 id: uniqid.time(),
@@ -19,7 +19,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 persons: state.persons.concat(newPerson)
             };
-        case actionTypes.DELETE_RESULT:
+        case actionTypes.DELETE_PERSON:
             const updatedArr = state.persons.filter(person => person.id !== action.resultPersonId);
             return {
                 ...state,
