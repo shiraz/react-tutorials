@@ -15,12 +15,10 @@ const reducer = (state = initialState, action) => {
                 name: 'Max',
                 age: Math.floor( Math.random() * 40 )
             };
-            const newState = {
+            return {
                 ...state,
                 persons: state.persons.concat(newPerson)
             };
-            console.log(newState);
-            return newState;
         case actionTypes.DELETE_RESULT:
             const updatedArr = state.persons.filter(person => person.id !== action.resultPersonId);
             return {
