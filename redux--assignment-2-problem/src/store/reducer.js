@@ -9,11 +9,10 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.ADD_PERSON:
-            console.log('Store result action reached.');
             const newPerson = {
                 id: uniqid.time(),
-                name: 'Max',
-                age: Math.floor( Math.random() * 40 )
+                name: action.personData.name,
+                age: action.personData.age
             };
             return {
                 ...state,
@@ -25,8 +24,6 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 persons: updatedArr
             };
-        default:
-            console.error('Invalid action type detected.');
     }
     return state;
 };
