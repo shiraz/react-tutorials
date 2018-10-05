@@ -10,36 +10,37 @@ import * as actions from '../../store/actions/index';
 class Auth extends Component {
 
     state = {
-      controls: {
-          email: {
-              elementType: 'input',
-              elementConfig: {
-                  type: 'email',
-                  placeholder: 'Mail Address'
-              },
-              value: '',
-              validation: {
-                  required: true,
-                  isEmail: true
-              },
-              valid: false,
-              touched: false
-          },
-          password: {
-              elementType: 'input',
-              elementConfig: {
-                  type: 'password',
-                  placeholder: 'Password'
-              },
-              value: '',
-              validation: {
-                  required: true,
-                  minLength: 6
-              },
-              valid: false,
-              touched: false
-          }
-      }
+        controls: {
+            email: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'email',
+                    placeholder: 'Mail Address'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    isEmail: true
+                },
+                valid: false,
+                touched: false
+            },
+            password: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'password',
+                    placeholder: 'Password'
+                },
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 6
+                },
+                valid: false,
+                touched: false
+            }
+        },
+        isSignUp: true
     };
 
     checkValidity(value, rules) {
@@ -73,7 +74,7 @@ class Auth extends Component {
         return isValid;
     }
 
-    inpurChangedHandler = (event, controlName) => {
+    inputChangedHandler = (event, controlName) => {
         const updatedControls = {
             ...this.state.controls,
             [controlName]: {
@@ -87,8 +88,14 @@ class Auth extends Component {
     };
 
     submitHandler = (event) => {
-      event.preventDefault();
-      this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value)
+        event.preventDefault();
+        this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignUp)
+    };
+
+    switchAuthModeHandler = () => {
+      this.setState(prevState => {
+          return {isSignUp: !prevState.isSignUp};
+      });
     };
 
     render() {
@@ -109,7 +116,7 @@ class Auth extends Component {
                 invalid={!formElement.config.valid}
                 shouldValidate={formElement.config.validation}
                 touched={formElement.config.touched}
-                changed={(event) => this.inpurChangedHandler(event, formElement.id)}
+                changed={(event) => this.inputChangedHandler(event, formElement.id)}
             />
         ));
         return (
@@ -118,6 +125,9 @@ class Auth extends Component {
                     {form}
                     <Button btnType="Success">SUBMIT</Button>
                 </form>
+                <Button
+                    clicked={this.switchAuthModeHandler}
+                    btnType="Danger">SWITCH TO {this.state.isSignUp ? 'SIGN IN' : 'SIGN UP'}</Button>
             </div>
         );
     }
@@ -125,7 +135,7 @@ class Auth extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-      onAuth: (email, password) => dispatch(actions.auth(email, password))
+        onAuth: (email, password, isSignUp) => dispatch(actions.auth(email, password, isSignUp))
     };
 };
 
