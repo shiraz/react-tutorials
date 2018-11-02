@@ -97,6 +97,9 @@
     "extends": "react-app"
   },
   "devDependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.18.0",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
+    "react-test-renderer": "^16.6.0"
   }
 }
